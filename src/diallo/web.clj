@@ -2,49 +2,36 @@
 (ns diallo.web
   (:use compojure.core
         ring.middleware.reload
-        ring.middleware.flash
-        ring.middleware.stacktrace)
+        ring.middleware.stacktrace
+        net.cgrand.enlive-html)
   (:require (compojure [handler :as handler]
                        [route :as route])
-            [net.cgrand.enlive-html :as html]
-            [jenko.core :as jenko]))
-
-(html/defsnippet
-  feature-snippet "diallo/views/index.html" [:.feature]
-  [feature]
-  [:*] (html/content (name feature)))
-
-(html/defsnippet
-  job-snippet "diallo/views/index.html" [:.job]
-  [job]
-  [:h3] (html/content (:name job))
-  [:.features] (html/content
-                 (map feature-snippet (:features job))))
-
-(html/deftemplate
-  layout "diallo/views/index.html"
-  [params]
-  [:.jobs] (html/content (map job-snippet (:jobs params))))
+            [jenko.core :as jenko]
+            [diallo.html :as html]))
 
 (defn- with-features [job]
   (merge job
     {:features (jenko/job-features (:name job))}))
 
 (defn- index-page [req]
-  (let [jobs (->> (jenko/jobs)
-                  (filter #(= "scotam-webapp-master" (:name %)))
-                  (map with-features))]
-    (layout {:jobs jobs})))
+  (html/index-template (jenko/views)))
+
+(defn- view-page [req]
+  (let [view (get-in req [:route-params :view])]
+    (html/view-template
+      view
+      (->> (jenko/jobs-in-view view)
+           (map with-features)))))
 
 (defroutes app-routes
   (GET "/" [] index-page)
+  (GET "/:view" [] view-page)
   (route/resources "/assets")
   (route/not-found "404..."))
 
 (def app
   (-> #'app-routes
     (wrap-reload)
-    (wrap-flash)
     (wrap-stacktrace)
     (handler/site)))
 
