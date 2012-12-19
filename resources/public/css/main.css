@@ -1,5 +1,60 @@
 
 body {
-    background-color: #fff;
+    background-color: #101010;
+    color: #fff;
+    font-family: Arial;
+    font-size: 150%;
 }
 
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.container {
+    margin: 0 auto;
+    width: 760px;
+}
+
+.view a {
+    display: block;
+    background-color: #789;
+    border-radius: 10px;
+    margin: 0 0 20px 0;
+    padding: 20px;
+    opacity: 0.8;
+    color: #000;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.view a:hover {
+    color: #500;
+    background-color: #89a;
+}
+
+.job {
+    background-color: #fc6;
+    padding: 20px;
+    border-radius: 10px;
+    color: #111;
+    margin: 0 0 20px 0;
+}
+
+.job:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.features li {
+    text-indent: -9999px;
+    width: 40px;
+    height: 40px;
+    float: left;
+    background-color: #c33;
+    border-radius: 10px;
+    margin: 0 10px 0 0;
+}

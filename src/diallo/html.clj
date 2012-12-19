@@ -17,16 +17,21 @@
                  (map feature-snippet (:features job))))
 
 (defsnippet
+  views-snippet "diallo/views/view.html" [:.jobs]
+  [jobs]
+  [:.job] (content (map job-snippet jobs)))
+
+(deftemplate
+  view-template "diallo/views/index.html"
+  [view jobs]
+  [:h1] (content view)
+  [:.content] (content (views-snippet jobs)))
+
+(defsnippet
   view-snippet "diallo/views/index.html" [:.view]
   [view]
   [:a] (do-> (content (:name view))
                   (set-attr :href (:name view))))
-
-(deftemplate
-  view-template "diallo/views/view.html"
-  [view jobs]
-  [:.name] (content view)
-  [:.jobs] (content (map job-snippet jobs)))
 
 (deftemplate
   index-template "diallo/views/index.html"
