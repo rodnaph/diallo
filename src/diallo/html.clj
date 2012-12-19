@@ -1,13 +1,16 @@
 
 (ns diallo.html
-  (:use net.cgrand.enlive-html))
+  (:use net.cgrand.enlive-html)
+  (:require [clojure.string :as string]))
 
 (defsnippet
   feature-snippet "diallo/views/view.html" [:.feature]
   [feature]
   [:*] (let [name* (name feature)]
          (do-> (content name*)
-            (set-attr :class name*))))
+               (set-attr :class (-> name*
+                                    (string/lower-case)
+                                    (string/replace #"\." "-"))))))
 
 (defsnippet
   job-snippet "diallo/views/view.html" [:.job]

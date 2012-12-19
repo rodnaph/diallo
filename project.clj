@@ -7,5 +7,8 @@
                  [ring/ring-jetty-adapter "1.1.2"]
                  [ring/ring-devel "1.1.6"]
                  [enlive "1.0.1"]]
+  :plugins [[lein-lesscss "1.2"]]
+  :lesscss-paths ["resources/less"]
+  :lesscss-output-path "resources/public/css/"
   :main diallo.core)
 
