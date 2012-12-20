@@ -6,18 +6,20 @@
 (defsnippet
   feature-snippet "diallo/views/view.html" [:.feature]
   [feature]
-  [:*] (let [name* (name feature)]
-         (do-> (content name*)
-               (set-attr :class (-> name*
-                                    (string/lower-case)
-                                    (string/replace #"\." "-"))))))
+  [:i] (let [icon (-> feature
+                  (string/lower-case)
+                  (string/replace #"\." "-"))]
+         (do-> (set-attr :class (str "icon-" icon))
+               (set-attr :title feature)))
+  [:span] (content feature))
 
 (defsnippet
   job-snippet "diallo/views/view.html" [:.job]
   [job]
   [:h3] (content (:name job))
   [:.features] (content
-                 (map feature-snippet (:features job))))
+                 (map (comp feature-snippet name)
+                      (:features job))))
 
 (defsnippet
   views-snippet "diallo/views/view.html" [:.jobs]
@@ -27,7 +29,8 @@
 (deftemplate
   view-template "diallo/views/index.html"
   [view jobs]
-  [:h1] (content view)
+  [:title] (append (str " - " view))
+  [:h1 :a] (content view)
   [:.content] (content (views-snippet jobs)))
 
 (defsnippet

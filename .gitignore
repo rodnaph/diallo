@@ -9,3 +9,4 @@ pom.xml
 .lein-failures
 .lein-plugins
 resources/public/css/diallo.css
+.DS_Store
