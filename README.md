@@ -10,10 +10,14 @@ might be overlooking required plugins or settings.
 Clone the repository then...
 
 ```
+# required URL to the jenkins instance
 export JENKINS_URL=http://somedomain.com
-export JENKINS_USER=login-required
-export JENKINS_TOKEN=alongtokenhereifthisisneeded
 
+# if your jenkins instance requires login
+export JENKINS_USER=-if-login-required
+export JENKINS_TOKEN=ALongTokenHereButOnlyIfLoginIsRequired
+
+# start the web server
 lein run
 ```
 
@@ -32,5 +36,5 @@ for each of the 'features' that they have enabled.
 ## Features
 
 The features listed for each job is a combination of the build steps and the build publishers
-that are configured fro that job.
+that are configured on that job.
 
