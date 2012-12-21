@@ -1,0 +1,100 @@
+
+body {
+    background-color: #101010;
+    color: #fff;
+    font-size: 150%;
+    font-family: 'Cabin', Helvetica, Arial, sans-serif;
+}
+
+h1, h2, h3 {
+    font-family: 'Lobster', Georgia, Times, serif;
+}
+
+h1 {
+    font-size: 70px;
+    line-height: 100px;
+    margin-bottom: 20px;
+}
+
+h1 a {
+    color: #fff;
+    text-decoration: none;
+}
+
+h3 {
+    margin: 0 0 10px 0;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.container {
+    margin: 0 auto;
+    width: 760px;
+}
+
+.view a {
+    display: block;
+    background-color: #789;
+    border-radius: 10px;
+    margin: 0 0 20px 0;
+    padding: 20px;
+    opacity: 0.8;
+    color: #000;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.view a:hover {
+    color: #500;
+    background-color: #89a;
+}
+
+.job {
+    background-color: #fc6;
+    padding: 20px;
+    border-radius: 10px;
+    color: #111;
+    margin: 0 0 20px 0;
+}
+
+.job:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.features li {
+    float: left;
+    background-color: #c33;
+    border-radius: 10px;
+    margin: 0 10px 0 0;
+}
+
+.features span {
+    display: none;
+}
+
+.features i {
+    padding: 8px 3px 3px 5px
+}
+
+i:before                                                        { content: "\f0c3"; }
+
+.icon-hudson-tasks-shell:before                                 { content: "\f0a3"; }
+.icon-hudson-plugins-checkstyle-checkstylepublisher:before      { content: "\f0e7"; }
+.icon-hudson-plugins-pmd-pmdpublisher:before                    { content: "\f0a5"; }
+.icon-hudson-plugins-dry-drypublisher:before                    { content: "\f0e9"; }
+.icon-hudson-plugins-plot-plotpublisher:before                  { content: "\f040"; }
+.icon-org-jenkinsci-plugins-cloverphp-cloverpublisher:before    { content: "\f07c"; }
+.icon-xunit:before                                              { content: "\f0e3"; }
+.icon-hudson-plugins-jdepend-jdependrecorder:before             { content: "\f0e4"; }
+.icon-hudson-plugins-violations-violationspublisher:before      { content: "\f00d"; }
+.icon-hudson-tasks-mailer:before                                { content: "\f003"; }
+.icon-hudson-plugins-ircbot-ircpublisher:before                 { content: "\f095"; }
+.icon-hudson-tasks-ant:before                                   { content: "\f085"; }
+
