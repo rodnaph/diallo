@@ -24,7 +24,7 @@
 (defsnippet
   views-snippet "diallo/views/view.html" [:.jobs]
   [jobs]
-  [:.job] (content (map job-snippet jobs)))
+  [:*] (content (map job-snippet jobs)))
 
 (deftemplate
   view-template "diallo/views/index.html"
