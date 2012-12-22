@@ -8,7 +8,7 @@
                  [ring/ring-devel "1.1.6"]
                  [enlive "1.0.1"]]
   :plugins [[lein-cljsbuild "0.2.10"]]
-  :source-paths ["src/clojure"]
+  :source-paths ["src/clojure" "src/views"]
   :cljsbuild {
     :builds [{
       :source-path "src/cljs"
