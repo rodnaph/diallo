@@ -13,6 +13,9 @@
   (merge job
     {:features (jenko/job-features (:name job))}))
 
+(defn- explore-page [req]
+  (html/explore-template))
+
 (defn- index-page [req]
   (html/index-template (jenko/views)))
 
@@ -25,7 +28,8 @@
 
 (defroutes app-routes
   (GET "/" [] index-page)
-  (GET "/:view" [] view-page)
+  (GET "/explore" [] explore-page)
+  (GET "/views/:view" [] view-page)
   (route/resources "/assets")
   (route/not-found "404..."))
 

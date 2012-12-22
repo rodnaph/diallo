@@ -26,6 +26,19 @@
   [jobs]
   [:*] (content (map job-snippet jobs)))
 
+(defsnippet
+  view-snippet "diallo/views/index.html" [:.view]
+  [view]
+  [:a] (do-> (content (:name view))
+                  (set-attr :href (format "/views/%s" (:name view)))))
+
+(defsnippet
+  explore-snippet "diallo/views/explore.html" [:.explorer]
+  [])
+
+;; Public
+;; ------
+
 (deftemplate
   view-template "diallo/views/index.html"
   [view jobs]
@@ -33,14 +46,15 @@
   [:h1 :a] (content view)
   [:.content] (content (views-snippet jobs)))
 
-(defsnippet
-  view-snippet "diallo/views/index.html" [:.view]
-  [view]
-  [:a] (do-> (content (:name view))
-                  (set-attr :href (:name view))))
-
-(deftemplate
+ (deftemplate
   index-template "diallo/views/index.html"
   [views]
   [:.views] (content (map view-snippet views)))
+
+(deftemplate
+  explore-template "diallo/views/index.html"
+  []
+  [:title] (append "Explore")
+  [:h1 :a] (content "Exploring...")
+  [:.content] (content (explore-snippet)))
 
