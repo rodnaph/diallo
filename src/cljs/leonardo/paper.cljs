@@ -4,7 +4,7 @@
 ;; Paper
 ;; -----
 
-(defn paper [id width height]
+(defn create [id width height]
   (if-let [canvas (.getElementById js/document id)]
     (js/Raphael. canvas width height)))
 
@@ -23,6 +23,12 @@
 
 ;; Shapes
 ;; ------
+
+(defn text [paper x y message]
+  (.text paper x y message))
+
+(defn rect [paper x y width height & [r]]
+  (.rect paper x y width height r))
 
 (defn circle [paper x y radius]
   (.circle paper x y radius))
