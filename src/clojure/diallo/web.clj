@@ -6,6 +6,7 @@
         net.cgrand.enlive-html)
   (:require (compojure [handler :as handler]
                        [route :as route])
+            [ring.util.response :as response]
             [jenko.core :as jenko]
             [diallo.html :as html]))
 
@@ -17,41 +18,40 @@
   (map with-features
        (jenko/jobs-in-view view)))
 
-(defn- as-edn [data]
-  {:content-type "application/edn"
-   :body (pr-str data)})
+(defn- edn-response [data]
+  (response/content-type
+    {:body (pr-str data)} 
+    "application/edn"))
 
 ;; Pages
 ;; -----
 
-(defn- explore-page [req]
+(defn- page-explore [req]
   (html/explore-template))
 
-(defn- index-page [req]
+(defn- page-index [req]
   (html/index-template (jenko/views)))
 
-(defn- view-page [view req]
+(defn- page-view [view req]
   (html/view-template view (jobs-for view)))
-
-(defn- drop-req [req])
 
 ;; API
 ;; ---
 
 (defn- api-views [req]
-  (as-edn (jenko/views))) 
+  (edn-response (jenko/views))) 
 
 (defn- api-jobs [view req]
-  (as-edn (jobs-for view)))
+  (edn-response (jobs-for view)))
 
 ;; Routes
 ;; ------
 
 (defroutes app-routes
 
-  (GET "/" [] index-page)
-  (GET "/explore" [] explore-page)
-  (GET "/views/:view" [view] (partial view-page view))
+  (GET "/" [] page-index)
+  (GET "/explore" [] page-explore)
+  (GET "/views/:view" [view] (partial page-view view))
 
   (GET "/api/views" [] api-views)
   (GET "/api/views/:view" [view] (partial api-jobs view))
