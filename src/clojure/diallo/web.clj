@@ -6,7 +6,6 @@
         net.cgrand.enlive-html)
   (:require (compojure [handler :as handler]
                        [route :as route])
-            [cheshire.core :as json]
             [jenko.core :as jenko]
             [diallo.html :as html]))
 
@@ -18,9 +17,9 @@
   (map with-features
        (jenko/jobs-in-view view)))
 
-(defn- as-json [data]
-  {:content-type "application/json"
-   :body (json/generate-string data)})
+(defn- as-edn [data]
+  {:content-type "application/edn"
+   :body (pr-str data)})
 
 ;; Pages
 ;; -----
@@ -40,10 +39,10 @@
 ;; ---
 
 (defn- api-views [req]
-  (as-json (jenko/views))) 
+  (as-edn (jenko/views))) 
 
 (defn- api-jobs [view req]
-  (as-json (jobs-for view)))
+  (as-edn (jobs-for view)))
 
 ;; Routes
 ;; ------

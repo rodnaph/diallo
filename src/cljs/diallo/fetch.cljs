@@ -29,7 +29,7 @@
   (when callback
     (fn [req]
       (let [data (. req (getResponseText))]
-        (callback (js->clj (JSON/parse data)))))))
+        (callback (reader/read-string data))))))
 
 (defn xhr [route content callback & [opts]]
   (let [req (new goog.net.XhrIo)

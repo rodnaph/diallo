@@ -33,7 +33,7 @@
                   (set-attr :href (format "/views/%s" (:name view)))))
 
 (defsnippet
-  explore-snippet "explore.html" [:.explorer]
+  explore-snippet "explore.html" [:#explorer]
   [])
 
 ;; Public

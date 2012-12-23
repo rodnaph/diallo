@@ -16,11 +16,6 @@ h1 {
     margin-bottom: 20px;
 }
 
-h1 a {
-    color: #fff;
-    text-decoration: none;
-}
-
 h3 {
     margin: 0 0 10px 0;
 }
@@ -28,6 +23,13 @@ h3 {
 ul {
     list-style-type: none;
     padding: 0;
+}
+
+/*================ header ==============*/
+
+h1 a {
+    color: #fff;
+    text-decoration: none;
 }
 
 .explore {
@@ -58,6 +60,17 @@ ul {
     width: 760px;
 }
 
+/*================ explorer ==============*/
+
+#explorer {
+    width: 758px;
+    height: 600px;
+    border: 1px rgba(255, 255, 255, 0.5) solid;
+    border-radius: 10px;
+}
+
+/*================ views ==============*/
+
 .view a {
     display: block;
     background-color: #789;
@@ -75,6 +88,8 @@ ul {
     background-color: #89a;
 }
 
+/*================ jobs ==============*/
+
 .job {
     background-color: #fc6;
     padding: 20px;
@@ -90,6 +105,8 @@ ul {
     clear: both;
     visibility: hidden;
 }
+
+/*================ features ==============*/
 
 .features li {
     float: left;

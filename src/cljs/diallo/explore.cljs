@@ -1,14 +1,21 @@
 
 (ns diallo.explore
-  (:require [diallo.fetch :as fetch]))
+  (:require [leonardo.paper :as p]
+            [leonardo.element :as e]
+            [diallo.fetch :as fetch]
+            [diallo.util :as util]))
 
-(def canvas (.querySelectorAll js/document ".explorer canvas"))
+(def paper (p/paper "explorer" 758 600))
 
 (defn show-views [views]
-  (.log js/console (count views)))
+  (doseq [view views]
+    (let [[x y] (p/random-point paper)
+          circle (p/circle paper x y 40)]
+      (e/attr circle {:fill "#fff" :fill-opacity 0.5}))))
 
 (defn init []
-  (fetch/xhr "/api/views" "" show-views))
+  (if paper
+    (fetch/xhr "/api/views" "" show-views)))
 
 (set! (.-onload js/window) init)
 
