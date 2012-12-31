@@ -19,7 +19,7 @@
   [:h3] (content (:name job))
   [:.features] (content
                  (map (comp feature-snippet name)
-                      (:features job))))
+                      (map :tag (:features job)))))
 
 (defsnippet
   views-snippet "view.html" [:.jobs]
